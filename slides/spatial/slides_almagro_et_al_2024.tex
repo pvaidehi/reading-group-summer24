@@ -1,0 +1,561 @@
+\include{slides_preamble}
+\AtBeginSection[]{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+%---------------------------------------------------------------------
+\begin{frame}[plain]
+\titlepage
+\note{
+	\begin{itemize}
+	\end{itemize}
+}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Introduction}
+%---------------------------------------------------------------------
+\begin{frame}{Introduction}
+	\begin{itemize}
+		\item build a model of residential choice with hetereogenous households -  amenities improve in response to location sorting
+        \item but nature of amenities has not been explored
+		\item estimate the model using several data
+        \item run counterfactual exercises
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Context}
+	\begin{itemize}
+        \item massive expansion in tourism in Amsterdam
+		\item increased supply of private rentals, increased supply of STRs
+        \item New regulation in Amsterdam severely restricting STR supply (hotels and Airbnbs)
+       
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Related Literature}
+	\begin{itemize}
+		\item spatial equilirium models
+        \item effects of STR entry on the housing market and hotel revenue
+        \item discrete-choice tools from the empirical io literature applied to urban residential markets
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Data}
+%---------------------------------------------------------------------
+\begin{frame}{Data}
+	\begin{itemize}
+		\item individual-level microdata: Centraal Bureau voor de Statistiek, Netherlands
+        they have complete residential histories, demographics
+        \item housing data: panel on physical characteristics, occupancies, and values. impute rents 
+        \item neighbourhood data: Amsterdam City Data consists of demographics, tourist flows, and consumption
+        amenities: restaurants, bars, food stores, non-food stores, nurseries, and “touristic amenities”
+        \item STR data: Inside Airbnb. monthly data on listings, geo-coordinates, prices, reviews.
+        need to identify preoperties that are permanently rented to tourists.  
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------
+\begin{frame}{Stylised Facts}
+    Fact 1: Tourists and STR listings have grown dramatically and sprawled across Amsterdam
+    \begin{figure}
+        \centering 
+        %\includegraphics[height=0.25\textwidth]{~/Desktop/Screenshot 2024-08-04 at 6.27.31 PM.png}
+        \caption{}
+        \label{fig:photo}
+    \end{figure}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Stylised Facts}
+    Fact 2: Rents have increased more in neighborhoods with more STR entry
+    using OLS (likely biased) and IV (shift-share)
+    \begin{figure}
+        \centering 
+        \includegraphics[height=0.25\textwidth]{~/Desktop/Screenshot 2024-08-05 at 7.55.21 PM.png}
+        \caption{}
+        \label{fig:photo}
+    \end{figure}
+    a 1\% increase in a neighborhood’s commercial STR listings is associated with a rent increase between .06-.11\%
+    and a house sale price increase between .04-.11\%
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Stylised Facts}
+    Fact 3: Amenities have tilted towards tourists and away from locals
+    \begin{figure}
+        \centering
+        %\includegraphics[height=0.5\textwidth]{~/Desktop/Screenshot 2024-08-04 at 6.44.45 PM.png}
+        \caption{}
+        \label{fig:photo}
+    \end{figure}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Stylised Facts}
+    Fact 4: The composition of residents has changed heterogeneously across neighborhoods
+    \begin{figure}
+        \centering
+        %\includegraphics[height=0.4\textwidth]{~/Desktop/Screenshot 2024-08-04 at 7.55.30 PM.png}
+        \caption{}
+        \label{fig:photo}
+    \end{figure}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Model - brace yourselves}
+%---------------------------------------------------------------------
+\begin{frame}{Notation}
+   \begin{itemize}
+        \item $J$ locations $+ 1$ outside option
+        \item $M_{jt}^{k}$: number of type $k$ households in location $j$
+        \item consumption amenities $s$ in $S$ sectors
+        \item $N_{sjt}$: the number of varieties in sector $s$ and location $j$ at time $t$
+        \item amenities $a_{jt} = [N_{1jt}, N_{2jt}, ..., N_{Sjt}]'$
+   \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+%---------------------------------------------------------------------
+\begin{frame}{Amenities Demand}
+    \begin{itemize}
+         \item Demand: Cobb-Douglas over bundles $H$ and $C$
+         \item also Cobb-Douglas preferences over amenity sectors, CES over firms/varieties within sector
+         \begin{figure}
+            \centering
+            \includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.35.57 PM.png}
+            \includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.36.03 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+ \end{frame}
+ %---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Amenities Supply}
+    \begin{itemize}
+         \item Firms within $s, j$ in monopolistic competition - same marginal cost, free entry
+         \item fixed cost $F_{sjt}$ - assumed to be increasing in $N_{jt}$ (congestion costs)
+         \item implies that firms choose same price $p_{sjt} = p_{ijst}$ and quantity $q_{sjt} = q_{isjt}$
+         \begin{figure}
+            \centering
+            \includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.40.54 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+ \end{frame}
+ %---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Amenities Market Clearing}
+    \begin{itemize}
+         \item usual market clearing delivers equilibrium number of varieties/firm
+         \item and a mapping from population composition to amenities
+    \end{itemize}
+ \end{frame}
+ %---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Supply}
+    \begin{itemize}
+         \item total housing stock inelastic in the short run
+         \item Landlords face a binary choice: long-term rentals or short-term rentals:
+         \begin{figure}
+            \centering
+            %\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.44.31 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Supply}
+    \begin{itemize}
+         \item total housing stock inelastic in the short run
+         \item Landlords face a binary choice: long-term rentals or short-term rentals:
+         \begin{figure}
+            \centering
+            %\includegraphics[height=0.2\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.44.28 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand}
+    \begin{itemize}
+         \item moving costs and location capital
+         \begin{figure}
+            \centering
+            %\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.50.07 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \begin{figure}
+            \centering
+            \includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.50.11 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand}
+    \begin{itemize}
+         \item some macro...
+            \begin{figure}
+                \centering
+                \includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.52.04 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand}
+    \begin{itemize}
+         \item choice probabilities
+            \begin{figure}
+                \centering
+                \includegraphics[height=0.2\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.55.43 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand}
+    \begin{itemize}
+         \item transition matrix
+            \begin{figure}
+                \centering
+                \includegraphics[height=0.2\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.55.48 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand}
+    \begin{itemize}
+         \item (population) demand for STRs
+            \begin{figure}
+                \centering
+                %\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.57.50 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+            \begin{figure}
+                \centering
+                \includegraphics[height=0.15\textwidth]{~/Desktop/Screenshot 2024-08-05 at 8.18.09 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand: tourists}
+    \begin{itemize}
+         \item toursists' flow payoff from staying in STR
+            \begin{figure}
+                \centering
+                %\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.59.44 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand: tourists}
+    \begin{itemize}
+         \item toursists' demand for STR
+            \begin{figure}
+                \centering
+                %\includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 7.01.35 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand: tourists}
+    \begin{itemize}
+         \item hotels are an outside option
+         \item but no price or bookings data
+         \item so use data on hotel capacity across locations 
+            \begin{figure}
+                \centering
+                \includegraphics[height=0.05\textwidth]{~/Desktop/Screenshot 2024-08-05 at 7.03.16 PM.png}
+                \caption{}
+                \label{fig:photo}
+            \end{figure}
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Equilibrium}
+    \begin{itemize}
+         \item a stationary equilibrium
+         \item a bunch of market clearing equations
+         \item long-term rental markets clear, short-term rental markets clear, amenities markets clear
+    \end{itemize}
+ \end{frame}
+%---------------------------------------------------------------------
+
+\section{Empirical Strategy and Results}
+
+%---------------------------------------------------------------------
+\begin{frame}{Amenity supply}
+    \begin{itemize}
+        \item estimating equation:
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 3.55.04 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item $X^{k}_{jt}$ total expenditure of the type k population in location j on consumption amenities
+        \item $\beta^{k}_{s}$ describes how this expenditure is allocated to each amenity sector $s$
+        \item IV: something that shifts amenities demand
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Amenity Supply}
+    \begin{itemize}
+        \item IV: $Z^{k}_{jt} = w_{t}^{k} S_{jt}^{\gamma(k)}$, where $S$ is housing stock by tenancy status  
+        % \begin{figure}
+        %     \centering
+        %     \includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 8.25.47 PM.png}
+        %     \caption{}
+        %     \label{fig:photo}
+        % \end{figure}
+        \item GMM moment equation to idenfity $\beta$s: $E[\omega_{sjt} Z^{k}_{sjt}] = 0$
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Amenity Supply}
+    \begin{itemize}
+        \item results:
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.5\textwidth]{~/Desktop/Screenshot 2024-08-05 at 5.35.28 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item 
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand: by locals}
+    \begin{itemize}
+        \item “Euler Equations in Conditional Choice Probabilities” (ECCP) estimator: which I didn't understand and didn't have time to study in detail
+        \begin{figure}
+            \centering
+           % \includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 8.28.20 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item interpret signs
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing Demand: by tourists}
+    \begin{itemize}
+        \item no IV here: they use reveiews of Airbnbs to create a score variable for every location
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.17.37 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing supply}
+    \begin{itemize}
+        \item estimating equation:
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-05 at 3.16.55 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item OLS is biased - use shift-share IV that shifts demand 
+        \item shift: worldwide change in STR demand 
+        \item share: neighborhood-level exposure to the shift from the historic spatial distribution of touristic attractions
+        \item relevance and exclusion are satisifed. (note: not mention of monotonicty, CALL IVAN)
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Housing supply}
+    \begin{itemize}
+        \item IV results: increase in the gap between STR prices and LTR prices of one standard deviation (29\%) would raise the market share of the ST relative to the LT segment by 13.6\%
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 3.35.29 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{How does the model do?}
+    \begin{itemize}
+        \item pretty well!
+        \begin{figure}
+            \centering
+            \includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 6.21.24 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Counterfactuals}
+%---------------------------------------------------------------------
+\begin{frame}{Counterfactual 1: Preference heterogeneity vs homogeneity}
+	\begin{itemize}
+		\item set preference parameters for consumption amenities to the average value across all household types, weighted by the size of groups
+        \item segregation is higher when households have heterogeneous preferences for amenities
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 11.16.35 AM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item ... but inequality is lower when preferences are heterogeneous
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Counterfactual 1: Preference heterogeneity vs homogeneity}
+	\begin{itemize}
+        \item ... but inequality is lower when preferences are heterogeneous
+        \begin{figure}
+            \centering
+            \includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-05 at 11.16.56 AM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item because high income groups do not compete with low income groups for the same locations, allowing low income groups to obtain their preferred amenities without having the high income groups bid up their rents
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Counterfactual 2: Decomposing welfare effects of the STR industry}
+	\begin{itemize}
+		\item STR entry reduces rent \& change amenity composition
+        \item disentangle: pre-entry baseline, allow STR keeping amenities fixed, then allow amenities to adjust
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------F
+%---------------------------------------------------------------------
+\begin{frame}{Counterfactual 2: Decomposing welfare effects of the STR industry}
+	\begin{itemize}
+		\item touristic amenities grow the most in areas populated by old people
+        \begin{figure}
+            \centering
+            %\includegraphics[height=0.5\textwidth]{~/Desktop/Screenshot 2024-08-05 at 12.41.54 PM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item Older Families are the highest-income group and face largest welfare losses: so STR entry is progressive
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Counterfactual 3: Taxing STRs and/or Touristic amenities}
+	\begin{itemize}
+		\item tax short-term rentals - directly reduces rent 
+        \item vs tax touristic amenities
+        \item taxing STR has monotonically increasing effects (in tax rates) on welfare 
+        \begin{figure}
+            \centering
+            \includegraphics[height=0.5\textwidth]{~/Desktop/Screenshot 2024-08-05 at 11.24.23 AM.png}
+            \caption{}
+            \label{fig:photo}
+        \end{figure}
+        \item TA tax does not because of amenities preference heterogenity across groups
+        \item singles? they love restuarants
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Conclusion}
+	\begin{itemize}
+		\item studied the role of preference heterogeneity over a set of endogenous location amenities in shaping within-city sorting and welfare inequality
+        \item there exists hetereogenity preference over amenities 
+        \item leads to increased sorting but welfare effects are ambiguous
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}[plain]
+\begin{center}{\LARGE See ya}\end{center}
+\end{frame}
+%---------------------------------------------------------------------
+
+
+% %\beginbackup
+% %\appendix
+% %\input{sections/appendix.tex}
+
+% %\bibliographystyle{../bib/aeanobold}
+% %\nobibliography{bib.bib}
+% %\backupend
+\end{document}
