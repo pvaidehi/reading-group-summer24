@@ -1,0 +1,233 @@
+\include{slides_preamble}
+\AtBeginSection[]{
+  \begin{frame}{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+
+%---------------------------------------------------------------------
+\begin{frame}[plain]
+\titlepage
+\note{
+	\begin{itemize}
+	\end{itemize}
+}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Introduction}
+%---------------------------------------------------------------------
+\begin{frame}{Introduction}
+	\begin{itemize}
+		\item hello
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Context}
+	\begin{itemize}
+        \item massive expansion in tourism in Amsterdam
+		\item increased supply of private rentals, increased supply of STRs
+        \item New regulation in Amsterdam severely restricting STR supply (hotels and Airbnbs)
+       
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Related Literature}
+	\begin{itemize}
+		\item spatial equilirium models
+        \item effects of STR entry on the housing market and hotel revenue
+        \item discrete-choice tools from the empirical io literature applied to urban residential markets
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Data}
+%---------------------------------------------------------------------
+\begin{frame}{Data}
+	\begin{itemize}
+		\item Two datasets
+        \item First, HAMP data: loan-level dataset includes information on borrower characteristics and mortgage terms before and after modification
+        \item it also includes the expected gain calculation run by servicers when evaluating borrowers for each modification type
+        \item match to consumer credit bureau records from TransUnion
+        \item Second, Chase Bank data: account-level monthly information on all mortgages serviced by Chase Bank and spending by mortgagors who also had a Chase credit card
+        \item ncludes all borrowers who receive either a government-subsidized HAMP or private modification
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+
+\section{Effect of Principal Reduction on Default}
+
+%---------------------------------------------------------------------
+\begin{frame}{Background on HAMP}
+    \begin{itemize}
+         \item introduced in 2009 in response to foreclosure crisis
+         \item provided government subsidies to help facilitate mortgage modifications for borrowers struggling to make their payments
+         \item primary goal of HAMP modifications is to provide borrowers with more affordable mortgages
+         \item all borrowers who receive modifications have their payment reduced to reach a 31 percent payment-to-income (PTI) ratio for at least five years
+         \item set of elgibility criteria 
+         \item mean payment reduction is \$680 per month
+    \end{itemize}
+ \end{frame}
+ %---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Background on HAMP}
+\begin{itemize}
+        \item contrasting borrowers assigned to two distinct modification types
+        \item “payment reduction” modification vs “payment and principal reduction” modification
+        \begin{figure}
+        \centering
+        \includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-14 at 2.23.11 PM.png}
+        \caption{}
+        \label{fig:photo}
+    \end{figure}
+\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Identification}
+\begin{itemize}
+        \item based on cutoff rule (CUTOFF $\implies$ RDD!!)
+        \item servicers calculate the expected NPV of cash flows for lenders under the status quo and under each of the two modification types
+        \item principal reduction is determined in part by a calculation examining which modification type is expected to be most beneficial for the lender
+        \begin{figure}
+        \centering
+        \subfigure[Figure 1]{\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-14 at 2.50.51 PM.png}}
+        \hspace{1cm}
+        \subfigure[Figure 2]{\includegraphics[height=0.1\textwidth]{~/Desktop/Screenshot 2024-08-14 at 2.50.57 PM.png}}
+    \end{figure}
+\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Results}
+\begin{itemize}
+        \item principal reduction has no impact on default
+        \item principal reduction was also costly to lenders: estimate that they had to forgive at least \$1.3 million in principal to prevent one foreclosure
+        \item government spent about \$8,000 per modification to support the additional principal reduction of the size we analyze in our treatment group. This translates into a cost of at least \$365,000 per avoided foreclosure, almost an order of magnitude larger than common estimates of the social costs of foreclosure
+        \item inconsistent with prior evidence which relied on cross-sectional evidence
+\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Effect of Principal Reduction on Consumption}
+
+%---------------------------------------------------------------------
+\begin{frame}{Identification}
+    \begin{itemize}
+        \item diff-in-diff design
+        \item control group: set of underwater borrowers who were eligible for principal reductions, but who instead received only payment reduction modifications
+        \item treatment captures the effect of long-term debt forgiveness holding short-term payments and access to liquidity fixed
+        \begin{figure}
+            \centering
+            \includegraphics[height=0.05\textwidth]{~/Desktop/Screenshot 2024-08-14 at 3.31.02 PM.png}
+            \caption{parallel trends}
+            \label{fig:photo}
+        \end{figure}
+        \item result: no effect on consumption
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Effect of Payment Reduction on Default}
+
+%---------------------------------------------------------------------
+\begin{frame}{Background}
+    \begin{itemize}
+        \item compare HAMP to private modifications
+        \item private modifications used a payment reduction target (vs PTI) - larger decreases in payments
+        \item they use maturity extension as a low-cost tool for achieving deeper immediate payment reductions without reducing long-term obligations
+        \begin{figure}
+            \centering
+            \subfigure[Figure 1]{\includegraphics[width=0.3\textwidth]{~/Desktop/Screenshot 2024-08-14 at 4.13.42 PM.png}}
+            \hspace{1cm}
+            \subfigure[Figure 2]{\includegraphics[width=0.3\textwidth]{~/Desktop/Screenshot 2024-08-14 at 4.14.15 PM.png}}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Identification}
+    \begin{itemize}
+        \item used HAMP elgibility cutoff of 31\% PTI
+        \item those below cutoff: only private modifications; above the cutoff: half and half
+        \item PTI cutoff therefore serves as an instrument for allocating borrowers between HAMP modifications with small payment reductions and private modifications with large payment reductions
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Identification}
+    \begin{itemize}
+        \item payment reductions are approximately constant below the cutoff and increasing above the cutoff
+        \item the default rate falls sharply by 7.3 percentage points
+        \begin{figure}
+            \centering
+            \subfigure[Figure 1]{\includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-14 at 4.19.07 PM.png}}
+            \hspace{1cm}
+            \subfigure[Figure 2]{\includegraphics[height=0.3\textwidth]{~/Desktop/Screenshot 2024-08-14 at 4.19.25 PM.png}}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+\section{Discussion \& Conclusion}
+%---------------------------------------------------------------------
+\begin{frame}{Dicussion: default}
+    \begin{itemize}
+        \item key result: liquidity drives default and negative equity does not affect default
+        \item time frame matters: this treatment was implemented in 2010
+        \item more generous principal reductions could affect default rates
+        \item principal reduction is ineffective for borrowers and costly to both lenders and taxpayers
+        \item payment-focused modifications are able to successfully reduce defaults for borrowers, at zero cost to taxpayers and at negative cost to lenders
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Dicussion: consumption}
+    \begin{itemize}
+        \item two key channels for relationship between housing wealth and consumption: wealth and collateral constraints
+        \item MPC from principal reduction is effectively zero ...
+        \item ... suggesting that the wealth channel is weak
+        \item the timing of liquidity matters
+        \item show that current consumption is unresponsive to changes in future liquidity
+    \end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}{Conclusion}
+	\begin{itemize}
+        \item applied to the main government program for distressed borrowers during the Great Recession, our results imply that 267,000 defaults could have been avoided
+		\item i liked this paper but some parts were way too boring
+        \item the appendix had a bunch of models ???
+	\end{itemize}
+\end{frame}
+%---------------------------------------------------------------------
+
+%---------------------------------------------------------------------
+\begin{frame}[plain]
+\begin{center}{\LARGE See ya}\end{center}
+\end{frame}
+%---------------------------------------------------------------------
+
+
+% %\beginbackup
+% %\appendix
+% %\input{sections/appendix.tex}
+
+% %\bibliographystyle{../bib/aeanobold}
+% %\nobibliography{bib.bib}
+% %\backupend
+\end{document}
